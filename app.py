@@ -16,9 +16,13 @@ start_stop_key = KeyCode(char=']')
 exit_key = KeyCode(char=';')
 change_speed_key = KeyCode(char='[')
 
+#? clicking part of program with listener application
+def on_press(key):
+    if key == exit_key:
+        window.destroy()
+
 canvas = tk.Canvas(window, width=600, height=300)
 canvas.grid(columnspan=3, rowspan=4)
-
 
 #! - layout plan indicator
 #todo - Do I want a logo? Yes
@@ -28,6 +32,7 @@ logo = ImageTk.PhotoImage(logo)
 logo_label = tk.Label(image=logo)
 logo_label.image = logo
 logo_label.grid(column=1, row=0)
+
 
 #! info
 intro = tk.Label(text="Welcome to the ClickApp Auto Click Bot! \n\nCurrent delay setting for the click function is: {} seconds between clicks \n\nIn order to Start/Stop the Auto Click function- \n-Press the {} key \n\nIn order to change the speed- \n-Press the {} key \n\nTo exit the program- \n-Press the {} key \n\nEnjoy!".format(delay,start_stop_key,change_speed_key,exit_key))
@@ -74,5 +79,14 @@ start_stop.grid(column=1, row=2)
 #! Created by CrudeExistence
 # outro = tk.Label(text="~~ Created by CrudeExistence")
 # outro.grid(column=,row=)
+
+#? Exit function works to button. Now to assign button listener for exit.
+test_exit = tk.Button(
+    window,
+    text="exit",
+    command=window.destroy,
+    relief=tk.RAISED
+)
+test_exit.grid(column=1, row=3)
 
 window.mainloop()
