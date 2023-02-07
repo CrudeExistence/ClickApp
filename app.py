@@ -35,24 +35,26 @@ intro.grid(column=1, row=1)
 
 #* Function for start/stop button
 def clicker():
+    ss_text.set("Stop")
     print('is this working??')
 
 #! start/stop button
     #* raised = stopped / sunken = running
+ss_text = tk.StringVar()
 start_stop = tk.Button(
     window,
-    text="start/stop",
+    textvariable=ss_text,
     command=lambda:clicker(),
     width=15,
     height=2,
     bg="black",
     fg="blue",
+    pady=15,
     relief=tk.RAISED
 )
-
-
-
+ss_text.set("Start")
 start_stop.grid(column=1, row=2)
+
 
 #! assigned increase speed keyboard button
     #* most likely flat design
