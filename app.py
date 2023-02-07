@@ -1,6 +1,7 @@
 import tkinter as tk
 import time
 import threading
+from PIL import Image, ImageTk
 
 from pynput.mouse import Button, Controller
 from pynput.keyboard import Listener, KeyCode
@@ -15,24 +16,43 @@ start_stop_key = KeyCode(char=']')
 exit_key = KeyCode(char=';')
 change_speed_key = KeyCode(char='[')
 
+canvas = tk.Canvas(window, width=600, height=300)
+canvas.grid(columnspan=3, rowspan=4)
+
+
 #! - layout plan indicator
+#todo - Do I want a logo? Yes
+# Logo
+logo = Image.open('assets\LgoPrintFultest.png')
+logo = ImageTk.PhotoImage(logo)
+logo_label = tk.Label(image=logo)
+logo_label.image = logo
+logo_label.grid(column=1, row=0)
+
 #! info
 intro = tk.Label(text="Welcome to the ClickApp Auto Click Bot! \n\nCurrent delay setting for the click function is: {} seconds between clicks \n\nIn order to Start/Stop the Auto Click function- \n-Press the {} key \n\nIn order to change the speed- \n-Press the {} key \n\nTo exit the program- \n-Press the {} key \n\nEnjoy!".format(delay,start_stop_key,change_speed_key,exit_key))
-intro.pack()
+intro.grid(column=1, row=1)
 
+#* Function for start/stop button
+def clicker():
+    print('is this working??')
 
 #! start/stop button
     #* raised = stopped / sunken = running
 start_stop = tk.Button(
+    window,
     text="start/stop",
-    width=20,
-    height=20,
+    command=lambda:clicker(),
+    width=15,
+    height=2,
     bg="black",
     fg="blue",
     relief=tk.RAISED
 )
 
-start_stop.pack()
+
+
+start_stop.grid(column=1, row=2)
 
 #! assigned increase speed keyboard button
     #* most likely flat design
@@ -50,7 +70,7 @@ start_stop.pack()
 #! decrease speed button
 
 #! Created by CrudeExistence
-outro = tk.Label(text="~~ Created by CrudeExistence")
-outro.pack()
+# outro = tk.Label(text="~~ Created by CrudeExistence")
+# outro.grid(column=,row=)
 
 window.mainloop()
