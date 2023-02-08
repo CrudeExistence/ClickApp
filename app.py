@@ -9,12 +9,43 @@ from pynput.keyboard import Listener, KeyCode
 #initialize tk(gui) as window and assign a title
 window = tk.Tk()
 window.title("Crude Auto Clicker")
+#Set minimum size of the window (x, y)
+window.minsize(600,450)
 
 delay = 0.31
 button = Button.left
 start_stop_key = KeyCode(char=']')
 exit_key = KeyCode(char=';')
 change_speed_key = KeyCode(char='[')
+
+class ClickMouse(threading.Thread):
+    def __init__(self, delay, button):
+        super(ClickMouse, self).__init__()
+        self.delay = delay
+        self.button = button
+        self.running = False
+        self.program_running = True
+    
+    def start_clicking(self):
+        self.running = True
+
+    def stop_clicking(self):
+        self.running = False
+
+    def exit(self):
+        self.stop_clicking()
+        window.destroy()
+
+    def run(self):
+        while self.program_running:
+            while self.running:
+                mouse.click(self.button)
+                time.sleep(self.delay)
+            time.sleep(0.1)
+
+mouse = Controller()
+click_thread = ClickMouse(delay, button)
+click_thread.start()
 
 #? clicking part of program with listener application
 def on_press(key):
@@ -24,8 +55,8 @@ def on_press(key):
 canvas = tk.Canvas(window, width=600, height=300)
 canvas.grid(columnspan=3, rowspan=4)
 
+
 #! - layout plan indicator
-#todo - Do I want a logo? Yes
 # Logo
 logo = Image.open('assets\LgoPrintFultest.png')
 logo = ImageTk.PhotoImage(logo)
