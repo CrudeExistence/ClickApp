@@ -34,7 +34,9 @@ class ClickMouse(threading.Thread):
 
     def exit(self):
         self.stop_clicking()
+        self.program_running = False
         window.destroy()
+        listener = None
 
     def run(self):
         while self.program_running:
@@ -49,8 +51,26 @@ click_thread.start()
 
 #? clicking part of program with listener application
 def on_press(key):
-    if key == exit_key:
-        window.destroy()
+    if key == start_stop_key:
+        if click_thread.running:
+            click_thread.stop_clicking()
+            click_thread.delay = 0.31
+        else:
+            click_thread.start_clicking()
+    elif key == change_speed_key:
+        if click_thread.running:
+            if click_thread.delay == 0.31:
+                click_thread.delay = 0.01
+            elif click_thread.delay == 0.01:
+                click_thread.delay = 0.0009
+            elif click_thread.delay == 0.0009:
+                click_thread.delay = 0.31
+        else:
+            print("clicker isn't running")
+    elif key == exit_key:
+        click_thread.exit()
+
+        
 
 canvas = tk.Canvas(window, width=600, height=300)
 canvas.grid(columnspan=3, rowspan=4)
@@ -112,12 +132,19 @@ start_stop.grid(column=1, row=2)
 # outro.grid(column=,row=)
 
 #? Exit function works to button. Now to assign button listener for exit.
+def exit():
+    click_thread.exit()
+
 test_exit = tk.Button(
     window,
     text="exit",
-    command=window.destroy,
+    command=lambda:exit(),
     relief=tk.RAISED
 )
 test_exit.grid(column=1, row=3)
 
-window.mainloop()
+with Listener(on_press=on_press) as listener:
+    # listener.start()
+    window.mainloop()
+    listener.join()
+    # listener.stop()
