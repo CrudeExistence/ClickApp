@@ -144,8 +144,7 @@ test_exit = tk.Button(
 test_exit.grid(column=1, row=3)
 
 with Listener(on_press=on_press) as listener:
-    # listener.start()
     window.mainloop()
-    listener.join()
+    # listener.start()
+    # listener.join()
     # listener.stop()
-    
