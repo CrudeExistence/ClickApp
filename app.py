@@ -87,7 +87,7 @@ def on_press(key):
         
 
 canvas = tk.Canvas(window, width=600, height=300)
-canvas.grid(columnspan=3, rowspan=4)
+canvas.grid(columnspan=3, rowspan=7)
 
 
 #! - layout plan indicator
@@ -127,11 +127,6 @@ indication2.grid(column=2,row=0)
 # intro = tk.Label(text="Welcome to the ClickApp Auto Click Bot! \n\nCurrent delay setting for the click function is: {} seconds between clicks \n\nIn order to Start/Stop the Auto Click function- \n-Press the {} key \n\nIn order to change the speed- \n-Press the {} key \n\nTo exit the program- \n-Press the {} key \n\nEnjoy!".format(delay,start_stop_key,change_speed_key,exit_key))
 # intro.grid(column=1, row=1)
 
-#* Function for start/stop button
-# def clicker():
-#     ss_text.set("Stop")
-#     print('is this working??')
-
 #! start/stop button
     #* raised = stopped / sunken = running
 # ss_text = tk.StringVar()
@@ -155,6 +150,25 @@ current_speed = tk.Label(
 )
 delay_text.set("The current speed is: " + str(click_thread.delay))
 current_speed.grid(column=1,row=1)
+
+#! Row 2  - info row - text
+#column 1 - current button
+column_1 = tk.Label(
+    text="Currently set button"
+)
+column_1.grid(column=0, row=2)
+
+#column 2 - type box
+column_2 = tk.Label(
+    text="Type to change button"
+)
+column_2.grid(column=1, row=2)
+
+#column 3 - set button
+column_3 = tk.Label(
+    text="Submit to change"
+)
+column_3.grid(column=2, row=2)
 
 #! assigned increase speed keyboard button
     #* most likely flat design
@@ -189,10 +203,8 @@ test_exit = tk.Button(
     command=lambda:exit(),
     relief=tk.RAISED
 )
-test_exit.grid(column=1, row=3)
+test_exit.grid(column=1, row=7)
 
 with Listener(on_press=on_press) as listener:
     window.mainloop()
-    # listener.start()
-    # listener.join()
-    # listener.stop()
+
