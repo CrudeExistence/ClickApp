@@ -9,6 +9,7 @@ from pynput.keyboard import Listener, KeyCode
 #initialize tk(gui) as window and assign a title
 window = tk.Tk()
 window.title("Crude Auto Clicker")
+
 #Set minimum size of the window (x, y)
 window.minsize(600,450)
 
@@ -17,6 +18,9 @@ button = Button.left
 start_stop_key = KeyCode(char=']')
 exit_key = KeyCode(char=';')
 change_speed_key = KeyCode(char='[')
+temp_start_stop = ''
+temp_exit_key = ''
+temp_speed_key = ''
 
 class ClickMouse(threading.Thread):
     def __init__(self, delay, button):
@@ -36,7 +40,6 @@ class ClickMouse(threading.Thread):
         self.stop_clicking()
         self.program_running = False
         window.destroy()
-        listener = None
 
     def run(self):
         while self.program_running:
