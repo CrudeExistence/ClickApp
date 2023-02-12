@@ -15,9 +15,12 @@ window.minsize(600,450)
 
 delay = 0.31
 button = Button.left
-start_stop_key = KeyCode(char=']')
-exit_key = KeyCode(char=';')
-change_speed_key = KeyCode(char='[')
+ss_button = ']'
+start_stop_key = KeyCode(char=ss_button)
+exit_button = ';'
+exit_key = KeyCode(char=exit_button)
+change_speed_button = '['
+change_speed_key = KeyCode(char=change_speed_button)
 temp_start_stop = ''
 temp_exit_key = ''
 temp_speed_key = ''
@@ -80,12 +83,36 @@ canvas.grid(columnspan=3, rowspan=4)
 
 
 #! - layout plan indicator
-# Logo
+# Logo row 0
 logo = Image.open('assets\LgoPrintFultest.png')
 logo = ImageTk.PhotoImage(logo)
 logo_label = tk.Label(image=logo)
 logo_label.image = logo
 logo_label.grid(column=1, row=0)
+
+# Running indicator row 0 - indicator needs two different labels - can't duplicate
+indication_text = tk.StringVar()
+indication = tk.Label(
+    textvariable=indication_text,
+    width=10,
+    height=2,
+    bg="red",
+    fg="black",
+    pady=15,
+    relief=tk.GROOVE
+)
+indication2 = tk.Label(
+    textvariable=indication_text,
+    width=10,
+    height=2,
+    bg="red",
+    fg="black",
+    pady=15,
+    relief=tk.RIDGE
+)
+indication_text.set("Stopped")
+indication.grid(column=0,row=0)
+indication2.grid(column=2,row=0)
 
 
 #! info
@@ -117,6 +144,10 @@ start_stop.grid(column=1, row=2)
 
 #! assigned increase speed keyboard button
     #* most likely flat design
+speed_info = tk.Label(
+    text=""
+)
+
 #! reassign text field
     #* reassign submit button
 #! increase speed button
