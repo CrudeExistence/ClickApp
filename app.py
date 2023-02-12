@@ -55,23 +55,31 @@ mouse = Controller()
 click_thread = ClickMouse(delay, button)
 click_thread.start()
 
+def speed_change():
+    delay_text.set("The current speed is: " + str(click_thread.delay))
+
 #? clicking part of program with listener application
 def on_press(key):
     if key == start_stop_key:
         if click_thread.running:
             click_thread.stop_clicking()
             click_thread.delay = 0.31
+            delay_text.set("The current speed is: " + str(click_thread.delay))
         else:
             click_thread.start_clicking()
     elif key == change_speed_key:
         if click_thread.running:
             if click_thread.delay == 0.31:
                 click_thread.delay = 0.01
+                delay_text.set("The current speed is: " + str(click_thread.delay))
             elif click_thread.delay == 0.01:
                 click_thread.delay = 0.0009
+                delay_text.set("The current speed is: " + str(click_thread.delay))
             elif click_thread.delay == 0.0009:
                 click_thread.delay = 0.31
+                delay_text.set("The current speed is: " + str(click_thread.delay))
         else:
+            #! Need to change to alert of some kind
             print("clicker isn't running")
     elif key == exit_key:
         click_thread.exit()
@@ -116,31 +124,37 @@ indication2.grid(column=2,row=0)
 
 
 #! info
-intro = tk.Label(text="Welcome to the ClickApp Auto Click Bot! \n\nCurrent delay setting for the click function is: {} seconds between clicks \n\nIn order to Start/Stop the Auto Click function- \n-Press the {} key \n\nIn order to change the speed- \n-Press the {} key \n\nTo exit the program- \n-Press the {} key \n\nEnjoy!".format(delay,start_stop_key,change_speed_key,exit_key))
-intro.grid(column=1, row=1)
+# intro = tk.Label(text="Welcome to the ClickApp Auto Click Bot! \n\nCurrent delay setting for the click function is: {} seconds between clicks \n\nIn order to Start/Stop the Auto Click function- \n-Press the {} key \n\nIn order to change the speed- \n-Press the {} key \n\nTo exit the program- \n-Press the {} key \n\nEnjoy!".format(delay,start_stop_key,change_speed_key,exit_key))
+# intro.grid(column=1, row=1)
 
 #* Function for start/stop button
-def clicker():
-    ss_text.set("Stop")
-    print('is this working??')
+# def clicker():
+#     ss_text.set("Stop")
+#     print('is this working??')
 
 #! start/stop button
     #* raised = stopped / sunken = running
-ss_text = tk.StringVar()
-start_stop = tk.Button(
-    window,
-    textvariable=ss_text,
-    command=lambda:clicker(),
-    width=15,
-    height=2,
-    bg="black",
-    fg="blue",
-    pady=15,
-    relief=tk.RAISED
-)
-ss_text.set("Start")
-start_stop.grid(column=1, row=2)
+# ss_text = tk.StringVar()
+# start_stop = tk.Button(
+#     window,
+#     textvariable=ss_text,
+#     command=lambda:clicker(),
+#     width=15,
+#     height=2,
+#     bg="black",
+#     fg="blue",
+#     pady=15,
+#     relief=tk.RAISED
+# )
+# ss_text.set("Start")
+# start_stop.grid(column=1, row=2)
 
+delay_text = tk.StringVar()
+current_speed = tk.Label(
+    textvariable=delay_text
+)
+delay_text.set("The current speed is: " + str(click_thread.delay))
+current_speed.grid(column=1,row=1)
 
 #! assigned increase speed keyboard button
     #* most likely flat design
@@ -150,7 +164,7 @@ speed_info = tk.Label(
 
 #! reassign text field
     #* reassign submit button
-#! increase speed button
+#! increase speed submit button
 
 #! current speed
     #* flat design to display speed
