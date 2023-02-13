@@ -127,23 +127,6 @@ indication2.grid(column=2,row=0)
 # intro = tk.Label(text="Welcome to the ClickApp Auto Click Bot! \n\nCurrent delay setting for the click function is: {} seconds between clicks \n\nIn order to Start/Stop the Auto Click function- \n-Press the {} key \n\nIn order to change the speed- \n-Press the {} key \n\nTo exit the program- \n-Press the {} key \n\nEnjoy!".format(delay,start_stop_key,change_speed_key,exit_key))
 # intro.grid(column=1, row=1)
 
-#! start/stop button
-    #* raised = stopped / sunken = running
-# ss_text = tk.StringVar()
-# start_stop = tk.Button(
-#     window,
-#     textvariable=ss_text,
-#     command=lambda:clicker(),
-#     width=15,
-#     height=2,
-#     bg="black",
-#     fg="blue",
-#     pady=15,
-#     relief=tk.RAISED
-# )
-# ss_text.set("Start")
-# start_stop.grid(column=1, row=2)
-
 delay_text = tk.StringVar()
 current_speed = tk.Label(
     textvariable=delay_text
@@ -192,18 +175,43 @@ ss_input = tk.Entry(
     )
 ss_input.grid(column=1,row=3)
 
+#! start/stop submit button
 ss_btn = tk.Button(window, text="submit change", command=ss_assign_function)
 ss_btn.grid(column=2,row=3)
 
-#! start/stop submit button
-
-
-
 #! assigned increase speed keyboard button
-    #* most likely flat design
+def increase_speed_assign_funtion():
+    global change_speed_button
+    increase_speed = increase_speed_var.get()
+    change_speed_button = increase_speed
+    increase_speed_var.set("")
+    increase_speed_info.set("The increase speed button is: " + ' " ' + change_speed_button + ' " ')
+    
+
+increase_speed_info = tk.StringVar()
+increase_speed_label = tk.Label(
+    textvariable=increase_speed_info
+)
+increase_speed_info.set("The increase speed button is: " + ' " ' + change_speed_button + ' " ')
+increase_speed_label.grid(column=0,row=4)
+
+increase_speed_var = tk.StringVar()
+increase_speed_input = tk.Entry(
+    window,
+    textvariable=increase_speed_var
+    )
+increase_speed_input.grid(column=1,row=4)
+
+increase_speed_btn = tk.Button(
+    window, 
+    text="Submit change", 
+    command=increase_speed_assign_funtion
+    )
+increase_speed_btn.grid(column=2,row=4)
+
+
 
 #! reassign text field
-    #* reassign submit button
 
 #! decrease speed button
 
