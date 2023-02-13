@@ -159,13 +159,14 @@ def ss_assign_function():
     ss = ss_var.get()
     ss_button = ss
     ss_var.set("")
-    ss_info.set("The start/stop button is: " + ' " ' + ss_button + ' " ')
+    ss_info.set("Start/Stop button: " + ' " ' + ss_button + ' " ')
+    ss_label.focus_set()
 
 ss_info = tk.StringVar()
 ss_label = tk.Label(
     textvariable=ss_info
 )
-ss_info.set("The start/stop button is: " + ' " ' + ss_button + ' " ')
+ss_info.set("Start/Stop button: " + ' " ' + ss_button + ' " ')
 ss_label.grid(column=0,row=3)
 
 ss_var = tk.StringVar()
@@ -185,14 +186,15 @@ def increase_speed_assign_funtion():
     increase_speed = increase_speed_var.get()
     change_speed_button = increase_speed
     increase_speed_var.set("")
-    increase_speed_info.set("The increase speed button is: " + ' " ' + change_speed_button + ' " ')
+    increase_speed_info.set("Increase speed button: " + ' " ' + change_speed_button + ' " ')
+    increase_speed_label.focus_set()
     
 
 increase_speed_info = tk.StringVar()
 increase_speed_label = tk.Label(
     textvariable=increase_speed_info
 )
-increase_speed_info.set("The increase speed button is: " + ' " ' + change_speed_button + ' " ')
+increase_speed_info.set("Increase speed button: " + ' " ' + change_speed_button + ' " ')
 increase_speed_label.grid(column=0,row=4)
 
 increase_speed_var = tk.StringVar()
