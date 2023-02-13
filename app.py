@@ -170,23 +170,41 @@ column_3 = tk.Label(
 )
 column_3.grid(column=2, row=2)
 
-#! assigned increase speed keyboard button
-    #* most likely flat design
-speed_info = tk.Label(
-    text=""
+#! assigned start/stop speed keyboard button
+def ss_assign_function():
+    global ss_button
+    ss = ss_var.get()
+    ss_button = ss
+    ss_var.set("")
+    ss_info.set("The start/stop button is: " + ' " ' + ss_button + ' " ')
+
+ss_info = tk.StringVar()
+ss_label = tk.Label(
+    textvariable=ss_info
 )
+ss_info.set("The start/stop button is: " + ' " ' + ss_button + ' " ')
+ss_label.grid(column=0,row=3)
 
-#! reassign text field
-    #* reassign submit button
-#! increase speed submit button
+ss_var = tk.StringVar()
+ss_input = tk.Entry(
+    window,
+    textvariable = ss_var
+    )
+ss_input.grid(column=1,row=3)
 
-#! current speed
-    #* flat design to display speed
+ss_btn = tk.Button(window, text="submit change", command=ss_assign_function)
+ss_btn.grid(column=2,row=3)
+
+#! start/stop submit button
+
+
 
 #! assigned increase speed keyboard button
     #* most likely flat design
+
 #! reassign text field
     #* reassign submit button
+
 #! decrease speed button
 
 #! Created by CrudeExistence
