@@ -158,16 +158,15 @@ def ss_assign_function():
     global ss_button
     ss = ss_var.get()
     start_stop_key = KeyCode(char=ss)
-    ss_info.set("To start/stop: " + ' " ' + ss + ' " ')
+    ss_info.set("Start/Stop: " + ' " ' + ss + ' " ')
     ss_var.set("")
     ss_label.focus_set()
-    print(start_stop_key)
 
 ss_info = tk.StringVar()
 ss_label = tk.Label(
     textvariable=ss_info
 )
-ss_info.set("To start/stop: " + ' " ' + ss_button + ' " ')
+ss_info.set("Start/Stop: " + ' " ' + ss_button + ' " ')
 ss_label.grid(column=0,row=3)
 
 ss_var = tk.StringVar()
@@ -187,7 +186,7 @@ def increase_speed_assign_funtion():
     increase_speed = increase_speed_var.get()
     change_speed_button = increase_speed
     increase_speed_var.set("")
-    increase_speed_info.set("To increase speed: " + ' " ' + change_speed_button + ' " ')
+    increase_speed_info.set("Increase speed: " + ' " ' + change_speed_button + ' " ')
     increase_speed_label.focus_set()
     
 
@@ -195,7 +194,7 @@ increase_speed_info = tk.StringVar()
 increase_speed_label = tk.Label(
     textvariable=increase_speed_info
 )
-increase_speed_info.set("To increase speed: " + ' " ' + change_speed_button + ' " ')
+increase_speed_info.set("Increase speed: " + ' " ' + change_speed_button + ' " ')
 increase_speed_label.grid(column=0,row=4)
 
 increase_speed_var = tk.StringVar()
@@ -212,11 +211,37 @@ increase_speed_btn = tk.Button(
     )
 increase_speed_btn.grid(column=2,row=4)
 
+#! Exit key section row 5
 
+def exit_assign_function():
+    global exit_button
+    exit_set = exit_var.get()
+    exit_button = exit_set
+    exit_var.set("")
+    exit_info.set("Exit: " + ' " ' + exit_button + ' " ')
+    exit_label.focus_set()
 
-#! reassign text field
+exit_info = tk.StringVar()
+exit_label = tk.Label(
+    textvariable=exit_info
+)
+exit_info.set("Exit: " + ' " ' + exit_button + ' " ')
+exit_label.grid(column=0,row=5)
 
-#! decrease speed button
+exit_var = tk.StringVar()
+exit_input = tk.Entry(
+    window,
+    textvariable=exit_var
+)
+exit_input.grid(column=1,row=5)
+
+exit_btn = tk.Button(
+    window,
+    text="Submit change",
+    command=exit_assign_function
+)
+exit_btn.grid(column=2,row=5)
+
 
 #! Created by CrudeExistence
 # outro = tk.Label(text="~~ Created by CrudeExistence")
